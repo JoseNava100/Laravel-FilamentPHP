@@ -51,25 +51,25 @@ class PatientResource extends Resource
                         'turkey' => 'Turkey'
                     ])
                     ->required(),
-                    Forms\Components\DatePicker::make('date_of_birth')
+                Forms\Components\DatePicker::make('date_of_birth')
                     ->required(),
-                    Forms\Components\Select::make('owners_id')
+                Forms\Components\Select::make('owners_id')
                     ->relationship('owners', 'name')
                     ->searchable()
                     ->preload()
                     ->createOptionForm([
                         Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
+                            ->required()
+                            ->maxLength(255),
                         Forms\Components\TextInput::make('email')
-                        ->label('Email addres')
-                        ->email()
-                        ->required()
-                        ->maxLength(255),
+                            ->label('Email addres')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
                         Forms\Components\TextInput::make('phone')
-                        ->label('Phone number')
-                        ->tel()
-                        ->required(),
+                            ->label('Phone number')
+                            ->tel()
+                            ->required(),
                     ])
                     ->required()
             ]);
@@ -79,10 +79,34 @@ class PatientResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('type')->searchable(),
+                Tables\Columns\TextColumn::make('date_of_birth')->sortable(),
+                Tables\Columns\TextColumn::make('owners.name')->searchable()
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->options([
+                        'dog' => 'Dog',
+                        'cat' => 'Cat',
+                        'rabbit' => 'Rabbit',
+                        'bird' => 'Bird',
+                        'hamster' => 'Hamster',
+                        'guinea pig' => 'Guinea pig',
+                        'fish' => 'Fish',
+                        'turtle' => 'Turtle',
+                        'snake' => 'Snake',
+                        'lizard' => 'Lizard',
+                        'ferret' => 'Ferret',
+                        'horse' => 'Horse',
+                        'cow' => 'Cow',
+                        'pig' => 'Pig',
+                        'sheep' => 'Sheep',
+                        'goat' => 'Goat',
+                        'chicken' => 'Chicken',
+                        'duck' => 'Duck',
+                        'turkey' => 'Turkey'
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
