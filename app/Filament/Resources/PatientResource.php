@@ -7,10 +7,12 @@ use App\Filament\Resources\PatientResource\RelationManagers;
 use App\Models\Patient;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -122,6 +124,7 @@ class PatientResource extends Resource
     {
         return [
             //
+            RelationManagers\TreatmentsRelationManager::class,
         ];
     }
 
